@@ -113,15 +113,15 @@ public class LoginAsyncTask extends AsyncTask<String, Integer, String> {
             os.put("version", Build.VERSION.SDK_INT);
             deviceDetails.put("os", os);
             obj.put("device-details", deviceDetails);
-            JSONObject loc = new JSONObject(s);
-            JSONObject location = new JSONObject();
-            location.put("city", loc.getString("city"));
-            location.put("region", loc.getString("region"));
-            location.put("country", loc.getString("country"));
-            location.put("ip", loc.getString("ip"));
-            location.put("isp", loc.getString("isp"));
-            location.put("timezone", loc.getString("timezone"));
-            obj.put("location-details", location);
+//            JSONObject loc = new JSONObject(s);
+//            JSONObject location = new JSONObject();
+//            location.put("city", loc.getString("city"));
+//            location.put("region", loc.getString("region"));
+//            location.put("country", loc.getString("country"));
+//            location.put("ip", loc.getString("ip"));
+//            location.put("isp", loc.getString("isp"));
+//            location.put("timezone", loc.getString("timezone"));
+//            obj.put("location-details", location);
             Log.d("login json", obj.toString());
             new AsyncTask<String, Integer, String>() {
 
@@ -129,7 +129,9 @@ public class LoginAsyncTask extends AsyncTask<String, Integer, String> {
                 protected String doInBackground(String[] params) {
 
                     HttpClient httpclient = new DefaultHttpClient();
+
                     HttpPost httppost = new HttpPost("http://" + activity.getResources().getString(R.string.server_ip) + "/vsm/api/v1/login/index.php");
+
 
                     try {
 
@@ -211,6 +213,10 @@ public class LoginAsyncTask extends AsyncTask<String, Integer, String> {
                         } catch (Exception e) {
 
                         }
+
+
+
+
 
                         Intent myService = new Intent(activity.getBaseContext(), BindService.class);
                         myService.putExtra("oauth", oauth);
